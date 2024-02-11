@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MCR Timer</title>
+  <script src="https://cdn.socket.io/4.7.4/socket.io.min.js" integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bulma.min.css') }}">
+  <style>
+    @media screen and (min-width: 1068px) {
+      .container {
+        max-width: 600px;
+        width: 600px;
+      }
+    }
+    .grid-container {
+        display: grid;
+        grid-template-columns: 50% auto;
+        background-color: rgba(0, 0, 0, 1);
+        padding: 10px;
+        height: 100vh;
+        }
+        .grid-item {
+        background-color: rgba(255, 255, 255, 1);
+        border: 1px solid rgba(0, 0, 0, 1);
+        padding: 20px;
+        font-size: 7vw;
+        color: black;
+        height: 100%;
+        line-height: 100%;
+        text-align: center;
+    }
+  </style>
+</head>
+<body>
+    <div class="grid-container">
+        <input type="number" placeholder="Minutes" class="grid-item" id="timer_minutes"></input>
+        <button class="grid-item" id="send_timer">Send</button>
+        <button class="grid-item" id="toggle_timer">Start/Pause</button>
+        <button class="grid-item" id="reset_timer">Reset</button>
+        <button class="grid-item" id="running"></button>
+        <button class="grid-item" id="remote_time"></button>
+      </div>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+  <script>
+  </script>
+
+</body>
+</html>
