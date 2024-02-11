@@ -3,7 +3,7 @@ def setup_gui():
     global window
     global timelabel
     window = tk.Tk()
-    window.attributes("-fullscreen", False)
+    window.attributes("-fullscreen", True)
     window.geometry("1920x1080")
 
 
