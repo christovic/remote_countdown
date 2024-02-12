@@ -32,7 +32,7 @@ When minutes have been typed in, this will update all screens to the new timer, 
 
 - Spacebar:
 
-When minutes have been type in, this will update all screens to the new timer and **immediately** start the timer.
+When minutes have been typed in, this will update all screens to the new timer and **immediately** start the timer.
 
 When minutes is empty and the timer is running, it will pause the timer.
 
