@@ -21,3 +21,27 @@ The controller is on `/` and the client is on `/client`
 If you wish to have a local display on the server show the countdown timer, please pass the --local-screen parameter.
 
 If you wish to run this on another port, please specify --port when running.
+
+## Keyboard mappings
+
+If you'd like to use a keyboard to control the interface, the following keys are bound:
+
+- Enter:
+
+When minutes have been typed in, this will update all screens to the new timer, but not start.
+
+- Spacebar:
+
+When minutes have been type in, this will update all screens to the new timer and **immediately** start the timer.
+
+When minutes is empty and the timer is running, it will pause the timer.
+
+When minutes is empty and the timer is not running, it will resume the timer.
+
+- r
+
+When pressed, r will reset the the timer to the original timer value
+
+- b 
+
+When pressed, b will set the text on all timers to "", or in other words, black out the timer.

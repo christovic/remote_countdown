@@ -22,7 +22,6 @@ socket.on('time_updated', function(data){
 })
 
 socket.on('blackout', function(){
-    console.log("blackout")
     document.getElementById('remote_time').innerText = "";
 })
 
@@ -84,6 +83,8 @@ if (window.location.pathname == '/') {
         } else if (evt.keyCode == 82) {
             socket.emit('control', 'pause')
             socket.emit('control', 'pause')
+        } else if (evt.keyCode == 66) {
+            socket.emit('blackout', 'blackout')
         }
     }
     document.getElementById("toggle_timer").addEventListener("click",
