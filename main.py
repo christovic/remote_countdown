@@ -4,6 +4,7 @@ from flask_socketio import SocketIO, emit
 import control
 import time
 
+
 app = Flask(__name__)
 socketio = SocketIO(app, async_mode='threading')
 

@@ -2,13 +2,17 @@ import threading
 import socketio
 import time
 from datetime import datetime
+import json
+
+with open("port.json") as f:
+    port = json.load(f)['port']
 
 sio = None
 
 def connect_socket():
     global sio
     sio = socketio.SimpleClient()
-    sio.connect("http://localhost:8000")
+    sio.connect(f"http://localhost:{port}")
     
 
 timer_length = 0

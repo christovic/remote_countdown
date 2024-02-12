@@ -1,6 +1,5 @@
 var socket = io();
 var running = false;
-socket.
 
 const divid = window.location.pathname == '/' ? "running" : "status"
 
