@@ -1,9 +1,8 @@
 from flask import Flask
 from flask import request, render_template
 from flask_socketio import SocketIO, emit
-import threading
-import subprocess
 import control
+import time
 
 app = Flask(__name__)
 socketio = SocketIO(app, async_mode='threading')
@@ -31,17 +30,21 @@ def timer_control(d):
 def client_connected():
     emit('timer_status', control.get_status())
     emit('timer_updated', control.get_status()['timer_length'])
+    control.run_time(time.time())
 
 @socketio.on('set_timer')
 def set_timer(d):
     control.set_timer(d)
     emit('timer_updated', control.get_status()['timer_length'], broadcast=True)
 
-def start_flask():
-    app.run(host="127.0.0.1")
-if __name__ == "__main__":
-    threading.Thread(target=app.run, kwargs={'host':"0.0.0.0", 'port':8080}).start()
-    #tk_display.setup_gui()
-    #start_gunicorn_thread()
-    #threading.Thread(target=tk_display.start_gui).start()
-    #tk_display.start_gui()
+@socketio.on('reset_timer')
+def reset_timer():
+    control.reset_timer()
+
+@socketio.on('blackout')
+def blackout(data):
+    emit('blackout', 'blackout', broadcast=True)
+
+@socketio.on('time_updated')
+def send_time(data):
+    emit('time_updated', data, broadcast=True)

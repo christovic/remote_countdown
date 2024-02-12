@@ -7,39 +7,50 @@
   <script src="https://cdn.socket.io/4.7.4/socket.io.min.js" integrity="sha384-Gr6Lu2Ajx28mzwyVR8CFkULdCU7kMlZ9UthllibdOSo6qAiN+yXNHqtgdTvFXMT4" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/bulma.min.css') }}">
   <style>
-    @media screen and (min-width: 1068px) {
-      .container {
-        max-width: 600px;
-        width: 600px;
-      }
-    }
     .grid-container {
-        display: grid;
-        grid-template-columns: 50% auto;
-        background-color: rgba(0, 0, 0, 1);
-        padding: 10px;
-        height: 100vh;
-        }
-        .grid-item {
-        background-color: rgba(255, 255, 255, 1);
-        border: 1px solid rgba(0, 0, 0, 1);
-        padding: 20px;
-        font-size: 7vw;
-        color: black;
-        height: 100%;
-        line-height: 100%;
-        text-align: center;
+      display: inline-grid;
+      grid-template-columns: 50% auto;
+      grid-template-rows: 33% 33% 33%;
+      background-color: rgba(0, 0, 0, 1);
+      padding: 10px;
+      height: 100vh;
+    }
+    .formatting {
+      color: black;
+      font-size: 7vw;
+      background-color: rgba(255, 255, 255, 1);
+    }
+    .grid-item {
+      border: 1px solid rgba(0, 0, 0, 1);
+      text-align: center;
+    }
+    .sub-item {
+      text-align: center;
+      display: grid; /* Adding grid layout to evenly distribute children */
+      grid-template-rows: 1fr 1fr; /* Two rows, each filling 50% of the height */
+    }
+    .flex-test {
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      text-align: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
     }
   </style>
 </head>
 <body>
     <div class="grid-container">
-        <input type="number" placeholder="Minutes" class="grid-item" id="timer_minutes"></input>
-        <button class="grid-item" id="send_timer">Send</button>
-        <button class="grid-item" id="toggle_timer">Start/Pause</button>
-        <button class="grid-item" id="reset_timer">Reset</button>
-        <button class="grid-item" id="running"></button>
-        <button class="grid-item" id="remote_time"></button>
+        <input type="number" placeholder="Minutes" class="grid-item formatting" id="timer_minutes"></input>
+        <button class="grid-item formatting" id="send_timer">Send/Reset</button>
+        <button class="grid-item formatting" id="toggle_timer">Start/Pause</button>
+        <button class="grid-item formatting" id="reset_timer">Blackout</button>
+        <div style="" class="flex-test formatting grid-item">
+          <div class="flex-test" id="running">Disconnected</div>
+          <div class="flex-test" id="time">Disconnected</div>
+        </div>
+        <div class="grid-item formatting flex-test" id="remote_time"></div>
       </div>
   <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 

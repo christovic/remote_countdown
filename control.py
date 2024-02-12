@@ -1,6 +1,7 @@
 import threading
 import socketio
 import time
+from datetime import datetime
 
 sio = None
 
@@ -15,7 +16,9 @@ current_time = 0
 fraction = 0
 
 running = False
+time_running = False
 timer_thread = None
+time_thread = None
 
 def seconds_to_string(s):
     mins, secs = divmod(s, 60) 
@@ -53,6 +56,10 @@ def start_timer():
         emit_status()
         run_timer(time.time())
 
+def reset_timer():
+    pause_timer()
+    sio.emit('blackout', 'blackout')
+
 
 def pause_timer():
     global running, current_time
@@ -78,3 +85,13 @@ def run_timer(previous_time_projection):
     else:
         timer_thread.cancel()
         
+def run_time(previous_time_projection=time.time(), internal=False):
+    global time_thread
+    if not internal and time_thread is not None:
+        return
+    diff = 1 - (time.time() - previous_time_projection)
+    time_thread = threading.Timer(diff, run_time, args=(time.time() + diff, True))
+    time_thread.start()
+    if sio is None:
+        connect_socket()
+    sio.emit('time_updated', datetime.now().strftime("%H:%M:%S"))
