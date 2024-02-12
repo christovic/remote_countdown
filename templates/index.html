@@ -39,6 +39,9 @@
       width: 100%;
       height: 100%;
     }
+    .monospace {
+      font-family:'Lucida Console', monospace;
+    }
   </style>
 </head>
 <body>
@@ -49,9 +52,9 @@
         <button class="grid-item formatting" id="reset_timer">Blackout</button>
         <div style="" class="flex-test formatting grid-item">
           <div class="flex-test" id="running">Disconnected</div>
-          <div class="flex-test" id="time">Disconnected</div>
+          <div class="flex-test monospace" id="time">Disconnected</div>
         </div>
-        <a href="/client" class="grid-item formatting flex-test" id="remote_time"></a>
+        <a href="/client" class="grid-item monospace formatting flex-test" id="remote_time"></a>
       </div>
   <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 
