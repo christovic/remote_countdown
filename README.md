@@ -14,13 +14,13 @@ pip3 install -r requirements.txt
 ```bash
 python3 start.py
 ```
-5. Visit the IP of the computer you're running this on in the browser with port :8000.
+5. Visit the IP of the computer you're running this on in the browser with port :8000. For example, if your computer IP address is 192.168.1.100, enter http://192.168.1.100:8000 in the browser.
 
-The controller is on `/` and the client is on `/client`
+The controller is on `/` and the client is on `/client`. You can click on the timer in the controller to access the client.
 
-If you wish to have a local display on the server show the countdown timer, please pass the --local-screen parameter.
+If you wish to have a local display on the server show the countdown timer, please pass the `--local-screen` parameter.
 
-If you wish to run this on another port, please specify --port when running.
+If you wish to run this on another port, please specify `--port` when running.
 
 ## Keyboard mappings
 
