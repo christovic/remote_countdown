@@ -1,4 +1,14 @@
 import tkinter as tk
+import socketio
+
+global sio
+sio = socketio.Client()
+sio.connect("http://localhost:8000")
+
+@sio.on('timer_status')
+def incoming_ws(data):
+    update_screen(data['current_time'])
+
 def setup_gui():
     global window
     global timelabel
@@ -21,14 +31,16 @@ def setup_gui():
 def start_gui():        
     window.mainloop()
 
-def update_screen(time, background_colour='black'):
-    timelabel.config(text=seconds_to_string(time), background=background_colour)
+def update_screen(incoming, background_colour='black'):
+    timelabel.config(text=incoming, background=background_colour)
 
 def seconds_to_string(s):
     mins, secs = divmod(s, 60) 
     timerstring = '{:02d}:{:02d}'.format(mins, secs) 
     return str(timerstring)
 
+setup_gui()
+start_gui()
 # def start_countdown(t):
 #     global current_time
 #     global after_id
